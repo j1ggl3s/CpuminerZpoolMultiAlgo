@@ -51,7 +51,8 @@ echo "Starting Benchmarks"
 # or text to 'bc', which triggers the "(standard_in) 1: syntax error" you are seeing.
 
 # --- Allium ---
-HASH=$(echo "$(/cpuminer-opt/cpuminer -a allium --benchmark --time-limit=$BMSEC 2>&1 > /dev/null | tail -1) / 1000 / 1000" | bc -l | awk '{printf "%.8f", $0}')
+#HASH=$(echo "$(/cpuminer-opt/cpuminer -a allium --benchmark --time-limit=$BMSEC 2>&1 > /dev/null | tail -1) / 1000 / 1000" | bc -l | awk '{printf "%.8f", $0}')
+HASH=$(/cpuminer-opt/cpuminer -a allium --benchmark --time-limit=$BMSEC --no-color 2>&1 | awk '/Benchmark:/ {v=$4; u=$5; if(u~/kH/)v*=1000; if(u~/MH/)v*=1000000; if(u~/GH/)v*=1000000000; printf "%.8f\n", v/1000000; found=1; exit} END {if(!found) print "0.00000000"}')
 echo "allium $HASH MH/s"
 # Creates/appends to the FACTOR variable which Zpool uses to calibrate profitability for your specific CPU.
 FACTOR="allium=$(echo $HASH \* 1000 | bc -l | awk '{printf "%.2f", $0}')"
