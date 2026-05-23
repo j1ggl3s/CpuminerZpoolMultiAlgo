@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 LABEL maintainer="laurence.baldwin@gmail.com"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt-get update -qq 
 RUN apt-get update --fix-missing -qq
