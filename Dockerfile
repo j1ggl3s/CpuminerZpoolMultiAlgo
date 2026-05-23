@@ -15,7 +15,7 @@ RUN git clone https://github.com/cpu-pool/cpuminer-opt-cpupower.git
 RUN chmod +x /cpuminer-opt-cpupower/build.sh
 RUN cd cpuminer-opt-cpupower/ && ./build.sh
 
-RUN git clone https://github.com/CURVEHASH/cpuminer-curvehash.git
+RUN git clone https://github.com/CURVEHASHcoin/cpuminer-curvehash.git
 RUN cd cpuminer-curvehash/; chmod +x autogen.sh build.sh ; ./build.sh
 
 RUN git clone https://github.com/bubasik/cpuminer-easy-binarium
